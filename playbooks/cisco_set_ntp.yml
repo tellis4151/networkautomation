@@ -1,0 +1,12 @@
+---
+- name: Set new NTP server and source interface
+  hosts: cisco
+  gather_facts: false
+
+  tasks:
+  - name: Setup new NTP server
+    cisco.ios.ios_ntp:
+      server: 216.239.35.0
+      source_int: GigabitEthernet1
+      logging: false
+      state: present 

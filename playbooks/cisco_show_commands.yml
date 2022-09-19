@@ -1,0 +1,14 @@
+---
+- name: Cisco Show Router Commands
+  hosts: cisco
+  gather_facts: no
+
+  tasks: 
+  - name: Run Show Command 
+    cisco.ios.ios_command:
+      commands: "{{ command }}"
+    register: output
+
+  - name: Display Command Output  
+    debug:
+      msg: "{{ output.stdout_lines }}"    

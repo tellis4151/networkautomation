@@ -1,0 +1,32 @@
+---
+- name: Gather information from routers
+  hosts: cisco
+  gather_facts: no
+
+  tasks:
+  - name: Gather Router facts
+    cisco.ios.facts:
+
+  - name: Display version
+    debug:
+      msg: "The IOS version is: {{ ansible_net_version }}"
+
+  - name: Display Serial Number
+    debug:
+      msg: "The serial number is: {{ ansible_net_serialnum }}"
+
+  - name: Display Device Model
+    debug:
+      msg: "The Device Model is: {{ ansible_net_model }}"
+
+  - name: Display Device Image
+    debug:
+      msg: "The Device Image is: {{ ansible_net_image }}"
+
+  - name: Display IOS Type
+    debug:
+      msg: "The Device IOS Type: {{ ansible_net_iostype }}"
+
+  - name: Display Configured IPV4 addresses
+    debug:
+      msg: "The configured IPV4 addresses: {{ ansible_net_all_ipv4_addresses }}"
