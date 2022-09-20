@@ -1,0 +1,20 @@
+---
+- name: Gathering FW System Info
+  hosts: firewalls
+  gather_facts: false  
+  connection: local
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    fw:
+      ip_address: "{{ ip_address }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+ 
+  tasks:
+  - name: Gather facts for device
+    paloaltonetworks.panos.panos_facts:
+      provider:  "{{ fw }}"
+  
+  - name: Display Model, PAN-OS Version
+    debug:
+      msg:  "Model: {{ ansible_facts['net_model'] }}, version: {{ ansible_facts['net_version'] }}, serial_number: {{ ansible_facts['net_serial'] }}, uptime: {{ ansible_facts['net_uptime'] }}" 

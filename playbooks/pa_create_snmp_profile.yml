@@ -1,0 +1,26 @@
+---
+- name: Configuring Firewall SNMP Configuration
+  hosts: firewalls
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    fw:
+      ip_address: "{{ ip_address }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+
+  tasks:
+  - name: Create SNMP Profile
+    paloaltonetworks.panos.panos_snmp_profile:
+      provider: "{{ fw }}"
+      name: "ansible-snmp-profile"
+      version: "v2c"
+
+
+  - name: Create SNMP v2 Server
+    paloaltonetworks.panos.panos_snmp_v2c_server:
+      provider: "{{ fw }}"
+      snmp_profile: "ansible-snmp-profile"
+      name: "snmp-v2c-server"
+      manager: "172.31.1.1"
+      community: "ansible-public RW"

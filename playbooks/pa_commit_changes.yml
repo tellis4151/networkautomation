@@ -1,0 +1,17 @@
+---
+- name: Commit Configurations
+  hosts: firewalls
+  gather_facts: false  
+  connection: local
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    fw:
+      ip_address: "{{ ip_address }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+
+  tasks:
+  - name: commit configs on firewall
+    paloaltonetworks.panos.panos_commit_firewall:
+      provider:  "{{ fw }}"
+      description: "Changes committed by Ansible" 

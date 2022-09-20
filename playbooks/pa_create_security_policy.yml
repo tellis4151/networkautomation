@@ -1,0 +1,24 @@
+---
+- name: Adding Security Policy to Firewall
+  hosts: firewalls
+  gather_facts: false  
+  connection: local
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    fw:
+      ip_address: "{{ ip_address }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+ 
+  tasks:
+  - name: Adding Sample SSH Security Policy to Firewall
+    paloaltonetworks.panos.panos_security_rule:
+      provider:  "{{ fw }}"
+      rule_name: 'Ansible - SSH permit'
+      description: 'Ansible Created SSH permit Rule'
+      source_zone: ['any']
+      destination_zone: ['any']
+      source_ip: ['any']
+      destination_ip: ['any']
+      application: ['ssh']
+      action: 'allow'

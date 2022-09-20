@@ -1,0 +1,25 @@
+---
+- name: Create Non-Admin User
+  hosts: firewalls
+  gather_facts: false  
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    fw:
+      ip_address: "{{ ip_address }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  
+  tasks:
+  - name: Create PA-FW Operator User
+    paloaltonetworks.panos.panos_administrator:
+      provider: "{{ fw }}"
+      admin_username: "{{ admin_username }}"
+      admin_password: "{{ admin_password }}"
+      superuser: true
+
+  - name: Create PA-FW Non-Admin User
+    paloaltonetworks.panos.panos_administrator:
+      provider: "{{ fw }}"
+      admin_username: "{{ non_admin_username }}"
+      admin_password: "{{ non_admin_password }}"
+      superuser_read_only: true

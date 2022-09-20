@@ -1,0 +1,20 @@
+---
+- name: PA Firewall Interface Configurations
+  hosts: firewalls
+  gather_facts: false  
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    fw:
+      ip_address: "{{ ip_address }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  
+  tasks:
+  - name: Configure Static IP addresses in 
+    paloaltonetworks.panos.panos_interface:
+      provider: "{{ fw }}"
+      if_name: "ethernet1/3"
+      mode: "layer3"
+      ip: ["10.1.1.1/24"]
+      enable_dhcp: false
+      zone_name: "private"
