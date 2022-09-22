@@ -1,0 +1,13 @@
+---
+- name: Set Network Banner
+  hosts: cisco
+  gather_facts: no
+
+  tasks:
+  - name: Configure Network Banner
+    cisco.ios.ios_banner:
+      banner: login
+      text: |
+        This Banner was configured by Ansible.
+        The system is actively monitored.
+      state: present
