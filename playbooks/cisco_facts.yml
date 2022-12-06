@@ -1,0 +1,56 @@
+---
+- name: Gather information from Cisco Routers
+  hosts: cisco
+  gather_facts: no
+
+  tasks:
+  - name: Gather Router facts
+    cisco.ios.facts:
+      gather_subset:
+        - all
+    register: facts
+
+  - name: Setting hostname fact
+    set_fact:
+      hostname: "{{ ansible_net_hostname }}"
+  
+  - debug:
+      msg: "{{ ansible_net_hostname }}"
+
+  - name: Setting model fact
+    set_fact:
+      model: "{{ ansible_net_model }}"    
+
+  - name: Setting iostype fact
+    set_fact:
+      iostype: "{{ ansible_net_iostype }}"
+
+  - name: Setting version fact
+    set_fact:
+      version: "{{ ansible_net_version }}"
+  
+  - name: Setting serial number fact
+    set_fact:
+      serialnum: "{{ ansible_net_serialnum }}"
+  
+  - name: Setting filesystem fact
+    set_fact:
+      filesystem: "{{ ansible_net_filesystems_info }}"
+  
+  - name: Setting IPV4 fact
+    set_fact:
+      ipv4: "{{ ansible_net_all_ipv4_addresses }}"
+  
+  - name: Create Facts File
+    template:
+      src: /var/lib/awx/projects/playbooks/cisco_facts_tbl.j2
+      dest: /var/lib/awx/projects/playbooks/cisco_facts_{{ inventory_hostname }}.html
+
+  - name: Create Empty HTML File
+    file:
+      path: "/var/lib/awx/projects/playbooks/cisco_facts.html"
+      state: touch
+      
+  - name: Generate Report
+    command:
+      cmd: /var/lib/awx/projects/playbooks/cisco_ifa.sh
