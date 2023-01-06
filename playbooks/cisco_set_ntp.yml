@@ -6,7 +6,7 @@
   tasks:
   - name: Setup new NTP server
     cisco.ios.ios_ntp:
-      server: 216.239.35.0
+      server: 216.239.35.12
       source_int: GigabitEthernet1
       logging: false
       state: present 
