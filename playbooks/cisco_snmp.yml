@@ -4,7 +4,7 @@
   gather_facts: no
 
   tasks: 
-  - name: Ensure that the desired snmp strings are present
+  - name: Configuring SNMP via Git NetOps
     cisco.ios.config:
       commands:
         - snmp-server community ansible-public-git RO
