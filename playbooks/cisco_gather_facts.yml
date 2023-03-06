@@ -6,6 +6,7 @@
   tasks:
   - name: Gather Router facts
     cisco.ios.facts:
+      gather_subset: all
 
   - name: Display version
     debug:
