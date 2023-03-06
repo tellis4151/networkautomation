@@ -27,6 +27,6 @@
     debug:
       msg: "The Device IOS Type: {{ ansible_net_iostype }}"
 
-  - name: Display Configured IPV4 addresses
-    debug:
-      msg: "The configured IPV4 addresses: {{ ansible_net_all_ipv4_addresses }}"
+#  - name: Display Configured IPV4 addresses
+#    debug:
+#      msg: "The configured IPV4 addresses: {{ ansible_net_all_ipv4_addresses }}"
