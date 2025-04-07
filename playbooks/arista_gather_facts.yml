@@ -1,0 +1,34 @@
+---
+- name: Gather information from Cisco Routers
+  hosts: arista
+  gather_facts: no
+
+  tasks:
+  - name: Gather Arista Router facts
+    arista.eos.eos_facts:
+      gather_subset: all
+    register: facts
+  
+  - name: Setting hostname fact
+    set_fact:
+      hostname: "{{ ansible_net_hostname }}"
+
+  - name: Setting model fact
+    set_fact:
+      model: "{{ ansible_net_model }}"    
+
+  - name: Setting version fact
+    set_fact:
+      version: "{{ ansible_net_version }}"
+  
+  - name: Setting serial number fact
+    set_fact:
+      serialnum: "{{ ansible_net_serialnum }}"
+  
+  - name: Setting filesystem fact
+    set_fact:
+      filesystem: "{{ ansible_net_filesystems }}"
+  
+  - name: Setting IPV4 fact
+    set_fact:
+      ipv4: "{{ ansible_net_all_ipv4_addresses }}"
