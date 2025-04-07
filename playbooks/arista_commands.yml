@@ -6,7 +6,7 @@
   tasks: 
   - name: Run Show Command 
     arista.eos.eos_command:
-      commands: "{{ command }}"
+      commands: "show {{ command }}"
     register: output
 
   - name: Display Command Output  
