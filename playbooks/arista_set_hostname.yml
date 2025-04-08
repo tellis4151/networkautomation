@@ -7,5 +7,5 @@
   - name: Run Show Command 
     arista.eos.eos_hostname:
       config:
-        hostname: router-demo
+        hostname: router-2
       state: merged 
