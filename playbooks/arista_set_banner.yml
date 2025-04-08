@@ -1,0 +1,13 @@
+---
+- name: Arista Set Banner
+  hosts: arista
+  gather_facts: no
+
+  tasks: 
+  - name: Run Show Command 
+    arista.eos.eos_banner:
+      banner: login
+      text: |
+        This is a test system. This system is being monitored.
+        Created by AAP 
+      state: present  

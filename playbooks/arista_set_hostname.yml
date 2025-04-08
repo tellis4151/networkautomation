@@ -1,0 +1,11 @@
+---
+- name: Arista Set Hostname
+  hosts: arista
+  gather_facts: no
+
+  tasks: 
+  - name: Run Show Command 
+    arista.eos.eos_hostname:
+      config:
+        hostname: rtr1
+      state: merged 

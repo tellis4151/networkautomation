@@ -1,0 +1,9 @@
+---
+- name: Arista Show Router Commands
+  hosts: arista
+  gather_facts: no
+ 
+  tasks: 
+  - name: Run Show Command 
+    arista.eos.eos_command:
+      commands: copy running-config startup-config
