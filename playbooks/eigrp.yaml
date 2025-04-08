@@ -1,0 +1,47 @@
+---
+- name: Replace Incorrect EIGRP Config
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: enable scp 
+      cisco.ios.ios_config:
+        lines: ip scp server enable
+      save_when: always
+
+    - name: Get config backup
+      cisco.ios.ios_config:
+        backup: true
+        backup_options:
+          dir_path: /tmp
+          filename: "{{ inventory_hostname }}_fix.cfg"
+
+    - name: Modify file
+      ansible.builtin.lineinfile:
+        path: /tmp/{{ inventory_hostname }}_fix.cfg
+        regexp: "{{ item.regexp }}"
+        state: "{{ item.state }}"
+        line: "{{ item.line | default(omit) }}"
+      loop:
+        - regexp: ^Current configuration
+          state: absent
+        - regexp: ^Building configuration
+          state: absent
+        - regexp: description oxyenterpise
+          line: description oxyenterprise
+          state: present
+
+    - name: copy file to cisco
+      ansible.netcommon.net_put:
+        src: /tmp/{{ inventory_hostname }}_fix.cfg
+        dest: nvram:startup-config
+      register: cisco_changed
+
+    - name: Overwrite startup config - archive
+      cisco.ios.ios_config:
+        lines:
+          - 'archive'
+
+    - name: Overwrite startup config - overwrite
+      cisco.ios.ios_command:
+        commands:
+          - command: 'configure replace nvram:startup-config force'

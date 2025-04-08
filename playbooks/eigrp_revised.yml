@@ -1,0 +1,37 @@
+---
+- name: Replace EIGRP Name
+  hosts: cisco
+  gather_facts: False
+  vars:
+    ansible_network_cli_ssh_type: paramiko
+
+  tasks:
+  - name: enable scp
+    cisco.ios.ios_config:
+      lines: ip scp server enable
+      save_when: always
+
+  - name: Get config backup
+    cisco.ios.ios_config:
+      backup: true
+      backup_options:
+        dir_path: /tmp
+        filename: "/tmp/{{ inventory_hostname }}.txt"
+  
+  - name: Modify file
+    ansible.builtin.replace:
+      path: /tmp/{{ inventory_hostname }}.txt
+      regexp: 'router eigrp oxyenterpise'
+      replace: 'router eigrp oxyenterprise'
+    delegate_to: localhost  
+
+  - name: copy modified file to startup
+    ansible.netcommon.net_put:
+      src: /tmp/{{ inventory_hostname }}.txt
+      dest: nvram:startup-config
+    register: cisco_changed
+
+  - name: Overwrite running config - overwrite
+    cisco.ios.ios_command:
+      commands:
+      - command: 'configure replace nvram:startup-config force'

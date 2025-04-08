@@ -7,5 +7,5 @@
   - name: Run Show Command 
     arista.eos.eos_hostname:
       config:
-        hostname: rtr1
+        hostname: router-1
       state: merged 
