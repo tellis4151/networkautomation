@@ -8,6 +8,6 @@
     arista.eos.eos_banner:
       banner: login
       text: |
-        This is a Test system. This system is being monitored.
+        This is a Production system. This system is being monitored.
         Created by AAP 
       state: present  
