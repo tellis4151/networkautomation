@@ -1,0 +1,14 @@
+---
+- name: Arista Rollback Default Config
+  hosts: arista
+  gather_facts: no
+
+  tasks: 
+  - name: Rollback Config 
+    arista.eos.eos_command:
+      commands: "rollback clean-config"
+    register: output
+
+  - name: Display Command Output  
+    debug:
+      msg: "{{ output.stdout_lines }}"  
