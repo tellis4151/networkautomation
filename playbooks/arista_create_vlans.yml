@@ -13,4 +13,6 @@
           name: dev
         - vlan_id: 30
           name: quarantine 
+        - vlan_id: 40
+          name: production
       state: merged 

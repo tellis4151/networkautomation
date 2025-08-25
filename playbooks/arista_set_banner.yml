@@ -8,6 +8,6 @@
     arista.eos.eos_banner:
       banner: login
       text: |
-        This is a Production system. This system is being monitored.
+        This is a Production Network System. This system is being monitored for any malicious activity.
         Created by AAP 
       state: present  
