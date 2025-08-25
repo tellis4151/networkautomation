@@ -1,0 +1,20 @@
+---
+- name: Backup Arista EOS Device Configurations
+  hosts: arista
+  gather_facts: no
+  vars:
+    backup_path: "/path/to/backup/directory" # Define your backup location
+
+  tasks:
+    - name: Backup current running configuration
+      arista.eos.eos_config:
+        backup: yes
+        backup_options:
+      register: backup_result
+
+    - name: Copy file to destination server
+      ansible.builtin.copy:
+        src: "{{ backup_result.backup_file }}""
+        dest: "/tmp/net_backups/{{ inventory_hostname }}/{{ ansible_date_time.iso8601 }}_running-config.back"
+        mode: "0644"
+      delegate_to: "{{ backup_server }}"
