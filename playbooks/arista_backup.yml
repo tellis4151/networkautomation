@@ -1,9 +1,7 @@
 ---
 - name: Backup Arista EOS Device Configurations
   hosts: arista
-  gather_facts: no
-  vars:
-    backup_path: "/path/to/backup/directory" # Define your backup location
+  gather_facts: yes
 
   tasks:
     - name: Backup current running configuration
