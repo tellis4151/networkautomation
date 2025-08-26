@@ -17,4 +17,5 @@
         src: "{{ backup_result.filename }}"
         dest: "/tmp/net_backups/{{ inventory_hostname }}/{{ '%Y-%m-%d %H:%M:%S' | strftime }}_running-config.bak"
         mode: "0644"
+        remote_src: yes
       delegate_to: "{{ backup_server }}"
