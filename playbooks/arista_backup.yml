@@ -15,6 +15,6 @@
     - name: Copy file to destination server
       ansible.builtin.copy:
         src: "{{ backup_result.filename }}"
-        dest: "/tmp/net_backups/{{ inventory_hostname }}/{{ '%Y%m%d_%H%M%S' | ansible.builtin.strftime(current_epoch.stdout) }}_running-config.bak"
+        dest: "/tmp/net_backups/{{ inventory_hostname }}/{{ '%Y-%m-%d %H:%M:%S' | strftime }}_running-config.bak"
         mode: "0644"
       delegate_to: "{{ backup_server }}"
