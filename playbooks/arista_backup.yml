@@ -18,7 +18,7 @@
 
     - name: Copy file to destination server
       ansible.builtin.copy:
-        src: "{{ backup_result.stdout }}"
+        src: "{{ backup_result.output }}"
         dest: "/home/ec2-user/network_backups/arista/{{ inventory_hostname }}/{{ '%Y-%m-%d %H:%M:%S' | strftime }}_running-config.bak"
         mode: "0644"
         remote_src: yes
