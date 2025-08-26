@@ -10,7 +10,7 @@
       arista.eos.eos_config:
         backup: yes
         backup_options:
-          dir: /tmp/ 
+          dir_path: /tmp/ 
           filename: "{{ inventory_hostname }}.txt"
       register: config_output
 
