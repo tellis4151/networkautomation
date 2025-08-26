@@ -10,16 +10,14 @@
       arista.eos.eos_config:
         backup: yes
         backup_options:
-      register: backup_result
-    
-    - name: Display backup
-      debug:
-        var: backup_result
+          dir: /tmp/ 
+          filename: "{{ inventory_hostname }}.txt"
+      register: config_output
 
     - name: Copy file to destination server
       ansible.builtin.copy:
-        src: "{{ backup_result.output }}"
+        src: "{{ config_output.backup_path }}"
         dest: "/home/ec2-user/network_backups/arista/{{ inventory_hostname }}/{{ '%Y-%m-%d %H:%M:%S' | strftime }}_running-config.bak"
         mode: "0644"
-        remote_src: yes
-      delegate_to: localhost
+        become: true
+      delegate_to: backup-server
