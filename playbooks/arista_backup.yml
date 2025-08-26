@@ -19,5 +19,4 @@
         src: "{{ config_output.backup_path }}"
         dest: "/home/ec2-user/network_backups/arista/{{ inventory_hostname }}/{{ '%Y-%m-%d %H:%M:%S' | strftime }}_running-config.bak"
         mode: "0644"
-        become: true
       delegate_to: backup-server
