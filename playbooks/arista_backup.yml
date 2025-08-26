@@ -12,7 +12,6 @@
         backup_options:
             dir_path: "/home/ec2-user/network_backups/arista"
             filename: "{{ inventory_hostname }}/{{ '%Y-%m-%d %H:%M:%S' | strftime }}_running-config.bak"
-      delegate_to: localhost
       register: backup_result
 
 #    - name: Copy file to destination server
