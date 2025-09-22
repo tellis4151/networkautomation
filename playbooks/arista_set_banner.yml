@@ -8,6 +8,5 @@
     arista.eos.eos_banner:
       banner: login
       text: |
-        Warning! This is a Production Network System. This system is being monitored for any malicious activity.
-        Created by AAP 
+        Warning! This system is restricted solely by Ellis Coperation. This is a Production Network System. This system is being monitored for all malicious activity. Created by AAP 
       state: present  
