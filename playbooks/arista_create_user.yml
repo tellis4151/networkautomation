@@ -9,6 +9,6 @@
       name: netadmin
       configured_password: "{{ net_password }}"
       update_password: always
-      privilege: 10
+      privilege: 15
       state: present
  
