@@ -7,5 +7,5 @@
   - name: Run Show Command 
     arista.eos.eos_hostname:
       config:
-        hostname: arista_rtr1
+        hostname: arista_rtr_demo
       state: merged 

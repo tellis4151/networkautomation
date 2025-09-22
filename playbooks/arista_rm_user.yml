@@ -4,11 +4,11 @@
   gather_facts: no
 
   tasks: 
-  - name: Arista Create Network Ops Admin User
+  - name: Arista Remove Network Ops Admin User
     arista.eos.eos_user:
       name: netadmin
       configured_password: "{{ net_password }}"
       update_password: always
       privilege: 10
-      state: present
+      state: absent
  
