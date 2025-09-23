@@ -4,7 +4,7 @@
   gather_facts: no
 
   tasks: 
-  - name: Run Show Command 
+  - name: Set Banner for Arista Router
     arista.eos.eos_banner:
       banner: login
       text: |
