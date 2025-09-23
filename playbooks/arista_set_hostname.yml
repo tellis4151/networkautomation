@@ -4,8 +4,8 @@
   gather_facts: no
 
   tasks: 
-  - name: Run Show Command 
+  - name: Set Router Hostname
     arista.eos.eos_hostname:
       config:
-        hostname: arista_rtr_demo
+        hostname: arista_rtr1
       state: merged 
