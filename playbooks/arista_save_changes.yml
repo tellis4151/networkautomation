@@ -1,9 +1,13 @@
 ---
-- name: Arista Show Router Commands
+- name: Arista Save Router Configuration
   hosts: arista
   gather_facts: no
  
   tasks: 
-  - name: Run Show Command 
+  - name: Copy running Config to Starting Config
     arista.eos.eos_command:
       commands: copy running-config startup-config
+
+  - name: Write to Memory
+    arista.eos.eos_command:
+      commands: write memory
