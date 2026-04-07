@@ -1,5 +1,5 @@
 ---
-- name: Gather information from Cisco Routers
+- name: Gather information from Arista Routers
   hosts: arista
   gather_facts: no
 
