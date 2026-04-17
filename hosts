@@ -1,0 +1,30 @@
+[cisco_ios]
+leaf01 ansible_host=192.168.1.10
+leaf02 ansible_host=192.168.1.11
+
+[juniper_junos]
+edge01 ansible_host=10.0.0.5
+edge02 ansible_host=10.0.0.6
+
+# Variables applied to all hosts in the cisco_ios group
+[cisco_ios:vars]
+ansible_connection=ansible.netcommon.network_cli
+ansible_network_os=cisco.ios.ios
+ansible_user=admin
+ansible_become=yes
+ansible_become_method=enable
+
+# Variables applied to all hosts in the juniper_junos group
+[juniper_junos:vars]
+ansible_connection=ansible.netcommon.netconf
+ansible_network_os=junipernetworks.junos.junos
+ansible_port=830
+
+# Parent group that includes multiple child groups
+[all_switches:children]
+cisco_ios
+juniper_junos
+
+# Global variables for all devices
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
