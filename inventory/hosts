@@ -2,7 +2,7 @@
 leaf01 ansible_host=192.168.1.10
 leaf02 ansible_host=192.168.1.11
 
-[arista_eos]
+[dell_emc]
 leaf03 ansible_host=192.168.1.12
 leaf04 ansible_host=192.168.1.13
 
@@ -14,9 +14,9 @@ ansible_user=admin
 ansible_become=yes
 ansible_become_method=enable
 
-[arista_eos:vars]
-ansible_connection=ansible.netcommon.netconf
-ansible_network_os=arista.eos.eos
+[dell_emc:vars]
+ansible_connection=ansible.netcommon.network_cli
+ansible_network_os=os10
 ansible_user=ec2-user
 ansible_become=yes
 ansible_become_method=enable
@@ -24,4 +24,4 @@ ansible_become_method=enable
 # Parent group that includes multiple child groups
 [all_switches:children]
 cisco_ios
-arista_eos
+dell_emc
