@@ -2,10 +2,6 @@
 leaf01 ansible_host=192.168.1.10
 leaf02 ansible_host=192.168.1.11
 
-[arista_eos]
-edge01 ansible_host=10.0.0.5
-edge02 ansible_host=10.0.0.6
-
 [dell_emc]
 leaf03 ansible_host=192.168.1.12
 leaf04 ansible_host=192.168.1.13
@@ -15,14 +11,6 @@ leaf04 ansible_host=192.168.1.13
 ansible_connection=ansible.netcommon.network_cli
 ansible_network_os=cisco.ios.ios
 ansible_user=admin
-ansible_become=yes
-ansible_become_method=enable
-
-# Variables applied to all hosts in the juniper_junos group
-[arista_eos:vars]
-ansible_connection=ansible.netcommon.netconf
-ansible_network_os=arista.eos.eos
-ansible_user=ec2-user
 ansible_become=yes
 ansible_become_method=enable
 
@@ -36,5 +24,4 @@ ansible_become_method=enable
 # Parent group that includes multiple child groups
 [all_switches:children]
 cisco_ios
-arista_eos
 dell_emc
