@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/Status-Active-success.svg)]()
 
-A comprehensive collection of scripts, playbooks, and tools designed to automate network configuration, management, and troubleshooting tasks across various devices and platforms.
+A comprehensive collection of Ansible Playbooks designed to automate network configuration, management, and troubleshooting tasks across various devices and platforms.
 
 ---
 
@@ -17,7 +17,7 @@ A comprehensive collection of scripts, playbooks, and tools designed to automate
 
 - **Automated Provisioning:** Quickly deploy configurations to routers, switches, and firewalls.
 - **Configuration Management:** Track, backup, and restore network device states.
-- **State Gathering & Monitoring:** Scripts to parse operational data (show commands, telemetry) to verify network health.
+- **State Gathering & Monitoring:** Playbooks to parse operational data (show commands, telemetry) to verify network health.
 - **Multi-Vendor Support:** Designed to interact with various networking equipment (e.g., Cisco, Juniper, Arista) using standard protocols (SSH, NETCONF, RESTCONF).
 
 ---
